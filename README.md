@@ -17,30 +17,30 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    IBM Cloud ROKS Cluster                        │
-│                    (i3-ea-cluster, eu-de)                        │
-│                                                                  │
+│                    IBM Cloud ROKS Cluster                       │
+│                    (i3-ea-cluster, eu-de)                       │
+│                                                                 │
 │   Pod Events │ RBAC Changes │ SCC Violations │ Node State       │
 │   ImagePullBackOff │ CrashLoops │ Audit Events                  │
-│                                                                  │
+│                                                                 │
 └──────────────────────────┬──────────────────────────────────────┘
                            │ Log forwarding (k8s-monitor.py)
                            │ via Kubernetes API
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Wazuh SIEM                                    │
-│                                                                  │
-│  ┌─────────────────────┐   ┌──────────────────────────────┐    │
-│  │   wazuh-manager     │──▶│     wazuh-indexer             │    │
-│  │                     │   │   (OpenSearch 3-node)         │    │
-│  │  20+ custom rules   │   │                               │    │
-│  │  k8s-monitor.py     │   │  wazuh-alerts-4.x-*           │    │
-│  └─────────────────────┘   └──────────────┬───────────────┘    │
-│                                            │                     │
-└────────────────────────────────────────────│─────────────────────┘
-                                             │ OpenSearch REST API
-                                             ▼
-                              ┌──────────────────────────┐
+│                    Wazuh SIEM                                   │
+│                                                                 │
+│  ┌─────────────────────┐   ┌──────────────────────────────┐     │
+│  │   wazuh-manager     │──▶│     wazuh-indexer            │     │
+│  │                     │   │   (OpenSearch 3-node)        │     │
+│  │  20+ custom rules   │   │                              │     │
+│  │  k8s-monitor.py     │   │  wazuh-alerts-4.x-*          │     │
+│  └─────────────────────┘   └──────────────┬───────────────┘     │
+│                                           │                     │
+└───────────────────────────────────────────│────────────────── ──┘
+                                            │ OpenSearch REST API
+                                            ▼
+                              ┌────────────────────────── ┐
                               │     Flask Backend         │
                               │     (Python 3.12)         │
                               │                           │
@@ -52,21 +52,20 @@
                               │  /api/count               │
                               └──────────┬────────────────┘
                                          │
-                              ┌──────────▼────────────────┐
+                              ┌──────────▼─────────────── ─┐
                               │   IBM watsonx.ai           │
-                              │   (Frankfurt eu-de)         │
                               │                            │
                               │  meta-llama/               │
                               │  llama-3-3-70b-instruct    │
                               └──────────┬─────────────────┘
                                          │
                               ┌──────────▼────────────────┐
-                              │   Browser Frontend         │
-                              │   (Vanilla HTML/JS)        │
-                              │                            │
-                              │  Live Alert Sidebar        │
-                              │  AI Chat Interface         │
-                              │  DQL Query Generator       │
+                              │   Browser Frontend        │
+                              │   (Vanilla HTML/JS)       │
+                              │                           │
+                              │  Live Alert Sidebar       │
+                              │  AI Chat Interface        │
+                              │  DQL Query Generator      │
                               └───────────────────────────┘
 ```
 
