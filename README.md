@@ -169,7 +169,7 @@ A custom Python monitor (`k8s-monitor.py`) runs every 2 minutes inside the Wazuh
 
 ### Prerequisites
 - Python 3.12+
-- IBM Cloud account with watsonx.ai Studio project (Frankfurt eu-de)
+- IBM Cloud account with watsonx.ai Studio project
 - Access to a Wazuh indexer (OpenSearch) instance
 
 ### Installation
