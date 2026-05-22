@@ -262,20 +262,11 @@ Response:
 
 | Component | Persistence Method |
 |---|---|
-| `ossec.conf` (with k8s-monitor wodle) | ConfigMap `wazuh-conf-54bf8bh7fk` |
+| `ossec.conf` (with k8s-monitor wodle) | ConfigMap `wazuh-conf` |
 | `kubernetes_rules.xml` | PVC (`wazuh/var/ossec/etc/rules/`) |
 | `k8s-monitor.py` | PVC (`wazuh/var/ossec/etc/`) |
 | Alert data | PVC + OpenSearch indices |
 
-### Event Deduplication
-
-The monitor tracks seen events by Kubernetes Event UID and `lastTimestamp`, only emitting alerts when an event is genuinely new or has updated. This prevents the same stale event from flooding the SIEM every 2 minutes.
-
-```python
-# Only emit if new or lastTimestamp changed
-if uid not in seen or seen[uid] != last_ts:
-    emit(event_type, ...)
-```
 
 ---
 
